@@ -31,4 +31,5 @@ grid on
 box on
 xlabel('Load [lbs]')
 ylabel('Bridge output [volts]')
+title('Load Cell Calibration Curve')
 hold off
