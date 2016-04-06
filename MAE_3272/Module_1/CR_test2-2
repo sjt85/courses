@@ -1,0 +1,5 @@
+%Plotting good 1018 datas
+
+A = Group11018ColdRolled7;
+A(:,1) = A(:,1)/2; %Strain
+A(:,2) = A(:,2)/.061504; %Stress, divide by area
