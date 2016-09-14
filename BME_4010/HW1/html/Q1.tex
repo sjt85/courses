@@ -1,3 +1,19 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    \begin{verbatim}
 %  Makes the two graphs called for in HW1, Q1
 
 P_v = 10;
@@ -40,7 +56,7 @@ W_heart  = zeros(4,361);
 
 for i = 1:4
     V_stroke(i,:) = C_d*P_v - C_s(i)*P_a;
-    W_heart(i,:)  = (1.33322e-4) * (P_a - P_v).*(C_d*P_v - C_s(i)*P_a);    
+    W_heart(i,:)  = (1.33322e-4) * (P_a - P_v).*(C_d*P_v - C_s(i)*P_a);
 end
 
 figure
@@ -65,7 +81,17 @@ box on
 legend('C_{systolic} = 0.1 mL/mmHg','C_{systolic} = 0.3 mL/mmHg',...
     'C_{systolic} = 0.5 mL/mmHg','C_{systolic} = 0.7 mL/mmHg','location','southwest')
 hold off
+\end{verbatim}
+
+\includegraphics [width=4in]{Q1_01.eps}
+
+\includegraphics [width=4in]{Q1_02.eps}
+
+\includegraphics [width=4in]{Q1_03.eps}
+
+\includegraphics [width=4in]{Q1_04.eps}
 
 
 
-
+\end{document}
+    
