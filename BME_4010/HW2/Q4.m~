@@ -1,0 +1,22 @@
+% Calculates and plots P_minus and P_plus as a function of beat number
+
+% Constants
+R_s = 17.5;
+C_sa = 0.00175;
+HR = 80;
+
+j = 25;      % number of beats
+T = 1/HR;    % period
+
+V_stroke = 70*ones(j);  % change this around as desired
+P_minus = zeros(j);
+P_plus  = zeros(j);
+P_minus(1) = 20;        % change this around
+
+for i = 1 : j-1
+    P_plus(i) = P_minus(i) + V_st
+    
+    
+    
+end
+
