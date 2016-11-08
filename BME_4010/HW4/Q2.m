@@ -12,7 +12,7 @@ coeff = polyfit(t,LI,1);
 
 % Because we're doing a straight line, we don't need it fine-grained
 
-P_fitted = coeff(1)*t + coeff(2);
+LI_fitted = coeff(1)*t + coeff(2);
 
 
 
@@ -25,13 +25,33 @@ hold on
 box on
 
 plot(t,LI,'o')
-plot(t,P_fitted)
+plot(t,LI_fitted)
 xlabel('Time (hrs)')
 ylabel('P/P_{tot}')
 axis([0 25 0 .6])
-line([12 16],[P_fitted(4) P_fitted(4)])
-line([16 16],[P_fitted(4) P_fitted(5)])
+line([12 16],[LI_fitted(4) LI_fitted(4)])
+line([16 16],[LI_fitted(4) LI_fitted(5)])
 text(16.5,0.42,{'Proliferation';'Rate'})
 
+
+hold off
+
+
+
+%% And now plot the total number of proliferating cells
+
+coeff2 = polyfit(t,P,1);
+P_fitted = coeff2(1)*t + coeff2(2);
+
+figure
+hold on
+box on
+
+plot(t,P,'o')
+plot(t,P_fitted)
+
+axis([0 25 0 40])
+xlabel('Time (hrs)')
+ylabel('P')
 
 hold off
