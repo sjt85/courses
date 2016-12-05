@@ -1,10 +1,34 @@
-% Does the plots for question 1 of hw5 concerning the nephron
 
-%% Constants
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    
+
+
+
+
+\subsection*{Constants}
+
+\begin{verbatim}
 Q1_0 = 0.125e-6;
 c0 = 120;
+\end{verbatim}
 
-%% Equations portion
+
+\subsection*{Equations portion}
+
+\begin{verbatim}
 c1_0(1,1:200) = c0;
 
 fstarL = linspace(0,1.5e-5,200);
@@ -16,9 +40,12 @@ c2_0 = c0*(1-alpha).*exp(alpha);
 flux_in = Q1_0 * c0;
 flux_out = flux_in*(1-alpha);
 flux_in(1,1:200) = flux_in;
+\end{verbatim}
 
-%% Plotting
 
+\subsection*{Plotting}
+
+\begin{verbatim}
 close all
 figure
 hold on; box on;
@@ -46,8 +73,13 @@ xlabel('Total pumping rate, f^*_{Na}L (mEq/min)')
 ylabel('Total sodium flux (mEq/min)')
 
 hold off
+\end{verbatim}
+
+\includegraphics [width=4in]{Q1_01.eps}
+
+\includegraphics [width=4in]{Q1_02.eps}
 
 
 
-
-
+\end{document}
+    
