@@ -19,22 +19,26 @@ datas = [DB_diffusion(:,:); DB_pos(:,:); DB_neg(:,:)];
 % Do our least squares fits. Diffusion is 1, pos is 2, neg is 3
 P1 = polyfit(DB_diffusion(:,1),DB_diffusion(:,2),1);
 R1 = corrcoef(DB_diffusion);
-Rsq1 = R1(1,2).^2
+Rsq1 = R1(1,2).^2;
 
 P2 = polyfit(datas(106:176,1),datas(106:176,2),1);
 R2 = corrcoef(datas(106:176,1),datas(106:176,2));
-Rsq2 = R2(1,2).^2
+Rsq2 = R2(1,2).^2;
 
 P3 = polyfit(DB_neg(29:75,1),DB_neg(29:75,2),1);
 R3 = corrcoef(DB_neg(29:75,1),DB_neg(29:75,2));
-Rsq3 = R3(1,2).^2
+Rsq3 = R3(1,2).^2;
 
 
 %% And now regular fluorescein
 
-P_fluoro = sum(fluoro_cal(:,1).*fluoro_cal(:,2))/sum(fluoro_cal(:,1).^2)
+P_fluoro = sum(fluoro_cal(:,1).*fluoro_cal(:,2))/sum(fluoro_cal(:,1).^2);
 R_fluoro = corrcoef(fluoro_cal);
-Rsq_fluoro = R_fluoro(1,2).^2
+Rsq_fluoro = R_fluoro(1,2).^2;
+
+P1_fluoro = polyfit(fluoro(:,1),fluoro(:,2),1)
+R1_fluoro = corrcoef(fluoro);
+R1sq_fluoro = R1_fluoro(1,2).^2
 
 
 %% Plot the given data
@@ -86,7 +90,7 @@ ylabel('Absorbance')
 plot(DB_cal(:,1),DB_cal(:,2),'o','LineWidth',1.2)
 line([0; .039],[0,.0432619],'Color','k')
 
-text(.002,.045,'A = \epsilonbc')
+%text(.002,.045,'A = \epsilonbc')
 text(.027,.025,{'y = 1.1093x','R^2 = 0.996'},'FontSize',8)
 
 hold off
@@ -107,6 +111,12 @@ line([2551; 2551],[0.005;0.02],'LineStyle','--','Color','k')
 
 plot(fluoro(:,1),fluoro(:,2),'LineWidth',1.2)
 
+line(fluoro(:,1),polyval(P1_fluoro,fluoro(:,1)),...
+    'Color','k');
+
+text(150,.015,{'y = 2.208 \times 10^{-6} + 0.011','R^2 = 0.949'},...
+    'FontSize',8)
+
 text(973,0.007,'Diffusion','HorizontalAlignment','center')
 text(2249,0.007,{'Positive','Current'},'HorizontalAlignment','center')
 text(2938,0.007,'Negative Current','HorizontalAlignment','center')
@@ -126,7 +136,7 @@ ylabel('Absorbance')
 plot(fluoro_cal(:,1),fluoro_cal(:,2),'o','LineWidth',1.2)
 line([0; .068],[0,.068*12.9494],'Color','k')
 
-text(.002,.85,'A = \epsilonbc')
+%text(.002,.85,'A = \epsilonbc')
 text(.045,.45,{'y = 12.949x','R^2 = 0.994'},'FontSize',8)
 
 hold off
