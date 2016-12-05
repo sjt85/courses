@@ -6,6 +6,7 @@ load 'DB_diffusion.mat'
 load 'DB_pos.mat'
 load 'DB_neg.mat'
 load 'fluoro_cal.mat'
+load 'fluoro.mat'
 
 DB_cal = [.001562, .001; .003125, .006; .00625, .013; .0125, .024;...
     .025, .041; .05, .084];
@@ -93,12 +94,29 @@ hold off
 
 %% Plot the measured data
 
+gch = figure(3);
+clf;
+hold on; box on;
+axis([0, 3500, 0.005, .02])
+xlabel('Time (sec)')
+ylabel('Concentration (mM)')
 
 
+line([1946; 1946],[0.005;0.02],'LineStyle','--','Color','k')
+line([2551; 2551],[0.005;0.02],'LineStyle','--','Color','k')
+
+plot(fluoro(:,1),fluoro(:,2),'LineWidth',1.2)
+
+text(973,0.007,'Diffusion','HorizontalAlignment','center')
+text(2249,0.007,{'Positive','Current'},'HorizontalAlignment','center')
+text(2938,0.007,'Negative Current','HorizontalAlignment','center')
+
+
+hold off
 
 % Calibration curve
 
-gcf = figure(3);
+gcf = figure(4);
 clf;
 hold on; box on;
 axis([0,0.07,0,1])
