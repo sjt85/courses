@@ -1,0 +1,206 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW5Q1</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-03-01"><meta name="DC.source" content="HW5Q1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Does some matrix inversions for HW5, Q1</span>
+
+<span class="comment">% Part a</span>
+eps = [0; 0; .002; 0; 0; 0];
+E1 = 12e12; E2 = 13.4e12; E3 = 20e12;
+G12 = 4.53e12; G23 = 6.23e12; G31 = 5.61e12;
+nu12 = 0.376; nu23 = 0.235; nu31 = 0.371;
+
+sigma_a = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+
+<span class="comment">% Part b_i</span>
+eps = [0; 0; .002; 0; 0; 0];
+E1 = 12.7e12; E2 = 12.7e12; E3 = 20e12;
+G12 = 5.38e12; G23 = 5.38e12; G31 = 5.61e12;
+nu12 = 0.306; nu23 = 0.306; nu31 = 0.371;
+
+sigma_bi = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+
+<span class="comment">% Part b_ii</span>
+eps = [0; 0; .002; 0; 0; 0];
+E1 = 20e12; E2 = 20e12; E3 = 20e12;
+G12 = 7.69e12; G23 = 7.69e12; G31 = 7.69e12;
+nu12 = 0.3; nu23 = 0.3; nu31 = 0.3;
+
+sigma_bii = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+
+
+
+<span class="keyword">function</span> stresses = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+<span class="comment">% Finds missing Poissons' ratios</span>
+<span class="comment">% Assembles a stiffness matrix</span>
+<span class="comment">% Inverts the stiffness matrix</span>
+<span class="comment">% Finds the stress state</span>
+
+nu21 = E2/E1*nu12;
+nu32 = E3/E2*nu23;
+nu13 = E1/E3*nu31;
+
+
+S = [1/E1, -nu21/E2, -nu31/E3, 0, 0, 0;<span class="keyword">...</span>
+     -nu12/E1, 1/E2, -nu32/E3, 0, 0, 0;<span class="keyword">...</span>
+     -nu13/E1, -nu23/E2, 1/E3, 0, 0, 0;<span class="keyword">...</span>
+     0, 0, 0, 1/G23, 0, 0;<span class="keyword">...</span>
+     0, 0, 0, 0, 1/G31, 0;<span class="keyword">...</span>
+     0, 0, 0, 0, 0, 1/G12];
+
+stresses = inv(S)*eps;
+
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+sigma_a =
+
+   1.0e+10 *
+
+    2.0339
+    2.1484
+    5.5081
+         0
+         0
+         0
+
+
+sigma_bi =
+
+   1.0e+10 *
+
+    2.1874
+    2.5121
+    6.0221
+         0
+         0
+         0
+
+
+sigma_bii =
+
+   1.0e+10 *
+
+    2.3077
+    2.3077
+    5.3846
+         0
+         0
+         0
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Does some matrix inversions for HW5, Q1
+
+% Part a
+eps = [0; 0; .002; 0; 0; 0];
+E1 = 12e12; E2 = 13.4e12; E3 = 20e12;
+G12 = 4.53e12; G23 = 6.23e12; G31 = 5.61e12;
+nu12 = 0.376; nu23 = 0.235; nu31 = 0.371;
+
+sigma_a = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+
+% Part b_i
+eps = [0; 0; .002; 0; 0; 0];
+E1 = 12.7e12; E2 = 12.7e12; E3 = 20e12;
+G12 = 5.38e12; G23 = 5.38e12; G31 = 5.61e12;
+nu12 = 0.306; nu23 = 0.306; nu31 = 0.371;
+
+sigma_bi = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+
+% Part b_ii
+eps = [0; 0; .002; 0; 0; 0];
+E1 = 20e12; E2 = 20e12; E3 = 20e12;
+G12 = 7.69e12; G23 = 7.69e12; G31 = 7.69e12;
+nu12 = 0.3; nu23 = 0.3; nu31 = 0.3;
+
+sigma_bii = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+
+
+
+function stresses = findStresses(eps, E1, E2, E3, G12, G23, G31, nu12, nu23, nu31)
+% Finds missing Poissons' ratios
+% Assembles a stiffness matrix
+% Inverts the stiffness matrix
+% Finds the stress state
+
+nu21 = E2/E1*nu12;
+nu32 = E3/E2*nu23;
+nu13 = E1/E3*nu31;
+
+
+S = [1/E1, -nu21/E2, -nu31/E3, 0, 0, 0;...
+     -nu12/E1, 1/E2, -nu32/E3, 0, 0, 0;...
+     -nu13/E1, -nu23/E2, 1/E3, 0, 0, 0;...
+     0, 0, 0, 1/G23, 0, 0;...
+     0, 0, 0, 0, 1/G31, 0;...
+     0, 0, 0, 0, 0, 1/G12];
+ 
+stresses = inv(S)*eps;
+
+end
+##### SOURCE END #####
+--></body></html>
